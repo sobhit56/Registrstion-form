@@ -1,221 +1,644 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Registration Form</title>
+    <meta name="description" content="Next-Generation Multi-Step Registration Form with Theme Switcher, Real-Time Validation, and OTP Verification">
+    <title>Create Your Account | Registration Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h2>Registration Form</h2>
-            <p class="subtitle">Fill in your details to create an account</p>
-        </header>
+    <!-- Background Ambient Glow Effects -->
+    <div class="ambient-glow glow-top" aria-hidden="true"></div>
+    <div class="ambient-glow glow-bottom" aria-hidden="true"></div>
 
-        <form id="registrationForm" action="#" method="POST">
-            <!-- Personal Information Section -->
-            <fieldset>
-                <legend>Personal Information</legend>
-                
-                <!-- Text Input -->
-                <div class="form-group">
-                    <label for="fullname">Full Name: <span class="required">*</span></label>
-                    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
-                    <small class="hint">Enter your first and last name</small>
-                </div>
+    <!-- Theme Switcher Floating Bar -->
+    <header class="app-header">
+        <div class="brand">
+            <div class="brand-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+            </div>
+            <span class="brand-name">ApexPortal</span>
+        </div>
 
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="email">Email: <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" placeholder="Enter email address" required>
-                    <small class="hint">We'll never share your email</small>
-                </div>
+        <button id="themeToggleBtn" class="theme-toggle" type="button" aria-label="Toggle light or dark theme" title="Toggle theme">
+            <span class="theme-icon sun-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </span>
+            <span class="theme-icon moon-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </span>
+            <span class="theme-label" id="themeLabelText">Dark</span>
+        </button>
+    </header>
 
-                <!-- Password -->
-                <div class="form-group">
-                    <label for="password">Password: <span class="required">*</span></label>
-                    <input type="password" id="password" name="password" placeholder="Create a strong password" required>
-                    <div class="password-strength">
-                        <div class="strength-bar"></div>
-                        <small class="strength-text">Password strength: <span id="strengthText">None</span></small>
+    <!-- Main Container -->
+    <main class="wizard-container">
+        <!-- Form Header & Progress -->
+        <div class="wizard-header">
+            <h1 class="wizard-title">Create your account</h1>
+            <p class="wizard-subtitle">Join thousands of professionals in just 3 quick steps.</p>
+
+            <!-- Stepper Indicator -->
+            <div class="stepper-nav" role="tablist" aria-label="Registration steps">
+                <div class="step-item active" data-step="1" id="stepIndicator1">
+                    <div class="step-badge">
+                        <span class="step-num">1</span>
+                        <svg class="step-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
                     </div>
+                    <span class="step-text">Account</span>
                 </div>
-
-                <!-- Age and Date -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="age">Age: <span class="required">*</span></label>
-                        <input type="number" id="age" name="age" min="18" max="60" placeholder="18-60" required>
-                        <small class="hint">Must be 18-60 years</small>
+                <div class="step-connector"></div>
+                <div class="step-item" data-step="2" id="stepIndicator2">
+                    <div class="step-badge">
+                        <span class="step-num">2</span>
+                        <svg class="step-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="dob">Date of Birth: <span class="required">*</span></label>
-                        <input type="date" id="dob" name="dob" required>
+                    <span class="step-text">Profile</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-item" data-step="3" id="stepIndicator3">
+                    <div class="step-badge">
+                        <span class="step-num">3</span>
+                        <svg class="step-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
                     </div>
+                    <span class="step-text">Verification</span>
                 </div>
-
-                <!-- Gender -->
-                <div class="form-group">
-                    <label>Gender: <span class="required">*</span></label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" id="male" name="gender" value="Male" required>
-                            <span class="radio-custom"></span>
-                            Male
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" id="female" name="gender" value="Female">
-                            <span class="radio-custom"></span>
-                            Female
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" id="other" name="gender" value="Other">
-                            <span class="radio-custom"></span>
-                            Other
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Skills & Experience Section -->
-            <fieldset>
-                <legend>Skills & Experience</legend>
-                
-                 <!-- Skills Checkboxes -->
-                <div class="form-group">
-                    <label>Skills:</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="html" name="skills" value="HTML">
-                            <span class="checkbox-custom"></span>
-                            HTML
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="css" name="skills" value="CSS">
-                            <span class="checkbox-custom"></span>
-                            CSS
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="js" name="skills" value="JavaScript">
-                            <span class="checkbox-custom"></span>
-                            JavaScript
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="react" name="skills" value="React">
-                            <span class="checkbox-custom"></span>
-                            React
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="node" name="skills" value="Node.js">
-                            <span class="checkbox-custom"></span>
-                            Node.js
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Experience Range -->
-                <div class="form-group">
-                    <label for="experience">
-                        Experience: <span id="experienceValue">5</span> years
-                    </label>
-                    <input type="range" id="experience" name="experience" min="0" max="10" value="5">
-                    <div class="range-labels">
-                        <span>0</span>
-                        <span>5</span>
-                        <span>10</span>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Additional Information Section -->
-            <fieldset>
-                <legend>Additional Information</legend>
-                
-                <!-- Country -->
-                <div class="form-group">
-                    <label for="country">Country: <span class="required">*</span></label>
-                    <select id="country" name="country" required>
-                        <option value="">-- Select Country --</option>
-                        <option value="india">India</option>
-                        <option value="usa">United States</option>
-                        <option value="uk">United Kingdom</option>
-                        <option value="canada">Canada</option>
-                        <option value="australia">Australia</option>
-                        <option value="germany">Germany</option>
-                        <option value="japan">Japan</option>
-                    </select>
-                </div>
-
-                <!-- About -->
-                <div class="form-group">
-                    <label for="about">About You:</label>
-                    <textarea id="about" name="about" rows="4" placeholder="Tell us about your background, interests, or anything you'd like to share..."></textarea>
-                    <small class="hint">Maximum 500 characters</small>
-                    <div class="char-count">
-                        <span id="charCount">0</span>/500 characters
-                    </div>
-                </div>
-
-                <!-- File Upload -->
-                <div class="form-group">
-                    <label for="resume">Upload Resume (PDF/DOC):</label>
-                    <div class="file-upload">
-                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
-                        <label for="resume" class="file-label">
-                            <span class="file-icon">📄</span>
-                            <span class="file-text">Choose file</span>
-                            <span class="file-name">No file chosen</span>
-                        </label>
-                    </div>
-                    <small class="hint">Maximum file size: 2MB</small>
-                </div>
-            </fieldset>
-
-            <!-- Terms & Submit -->
-            <div class="form-group terms">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <span class="checkbox-custom"></span>
-                    I agree to the <a href="#" class="terms-link">Terms & Conditions</a> and <a href="#" class="terms-link">Privacy Policy</a> <span class="required">*</span>
-                </label>
             </div>
 
-            <!-- Buttons -->
-            <div class="button-group">
-                <button type="submit" class="btn submit-btn">
-                    <span class="btn-icon">✓</span>
-                    Submit Registration
-                </button>
-                <button type="button" class="btn reset-btn" id="resetBtn">
-                    <span class="btn-icon">↺</span>
-                    Clear Form
-                </button>
+            <!-- Overall Progress Bar -->
+            <div class="progress-track" aria-hidden="true">
+                <div class="progress-fill" id="globalProgressFill" style="width: 33%;"></div>
+            </div>
+        </div>
+
+        <!-- Wizard Card Form -->
+        <div class="wizard-card">
+            <form id="registrationForm" novalidate autocomplete="on">
+                
+                <!-- STEP 1: Account Credentials -->
+                <section class="form-step active" id="step1" data-step="1" aria-labelledby="step1Heading">
+                    <div class="step-meta">
+                        <span class="step-tag">Step 1 of 3</span>
+                        <h2 id="step1Heading" class="step-heading">Account Credentials</h2>
+                        <p class="step-subheading">Set up your secure login details.</p>
+                    </div>
+
+                    <!-- Full Name Field -->
+                    <div class="input-field-group">
+                        <label for="fullName" class="field-label">Full Name <span class="required-star">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-prefix-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </span>
+                            <input 
+                                type="text" 
+                                id="fullName" 
+                                name="fullName" 
+                                class="form-control" 
+                                placeholder="e.g. Johnathan Doe" 
+                                autocomplete="name" 
+                                required 
+                                minlength="3"
+                                maxlength="60"
+                                aria-describedby="fullNameError">
+                            <span class="validation-status-icon" aria-hidden="true"></span>
+                        </div>
+                        <div class="field-error-msg" id="fullNameError" role="alert">Please enter your full name (minimum 3 characters).</div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="input-field-group">
+                        <label for="email" class="field-label">Work / Personal Email <span class="required-star">*</span></label>
+                        <span id="emailHint" class="field-hint">We'll send your activation link here</span>
+                        <div class="input-wrapper">
+                            <span class="input-prefix-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </span>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-control" 
+                                placeholder="name@domain.com" 
+                                autocomplete="username" 
+                                required
+                                aria-describedby="emailHint emailError">
+                            <span class="validation-status-icon" aria-hidden="true"></span>
+                        </div>
+                        <div class="field-error-msg" id="emailError" role="alert">Please enter a valid email address (e.g., alex@company.com).</div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="input-field-group">
+                        <label for="password" class="field-label">Password <span class="required-star">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-prefix-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </span>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="new-password" 
+                                class="form-control" 
+                                placeholder="Create a strong password" 
+                                autocomplete="new-password" 
+                                required 
+                                minlength="8"
+                                aria-describedby="passwordRules passwordError">
+                            <button type="button" class="password-toggle-btn" id="togglePasswordBtn" aria-label="Toggle password visibility">
+                                <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <svg class="eye-closed hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Real-time Password Strength Meter -->
+                        <div class="password-meter-container" id="passwordMeterContainer">
+                            <div class="meter-bar-track">
+                                <div class="meter-bar-fill" id="meterFill"></div>
+                            </div>
+                            <div class="meter-meta">
+                                <span>Security Strength:</span>
+                                <span class="meter-status" id="meterStatus">Too short</span>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Password Checklist -->
+                        <ul class="password-checklist" id="passwordRules" aria-label="Password requirements">
+                            <li class="rule-item" id="ruleLength" data-rule="length">
+                                <span class="rule-icon">○</span> At least 8 characters
+                            </li>
+                            <li class="rule-item" id="ruleUpper" data-rule="upper">
+                                <span class="rule-icon">○</span> One uppercase letter (A-Z)
+                            </li>
+                            <li class="rule-item" id="ruleNumber" data-rule="number">
+                                <span class="rule-icon">○</span> One number (0-9)
+                            </li>
+                            <li class="rule-item" id="ruleSpecial" data-rule="special">
+                                <span class="rule-icon">○</span> One special symbol (!@#$%^&*)
+                            </li>
+                        </ul>
+                        <div class="field-error-msg" id="passwordError" role="alert">Please meet all password requirements above.</div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="input-field-group">
+                        <label for="confirmPassword" class="field-label">Confirm Password <span class="required-star">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-prefix-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </span>
+                            <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                name="confirmPassword" 
+                                class="form-control" 
+                                placeholder="Re-type your password" 
+                                autocomplete="new-password" 
+                                required
+                                aria-describedby="confirmPasswordError">
+                            <button type="button" class="password-toggle-btn" id="toggleConfirmPasswordBtn" aria-label="Toggle confirm password visibility">
+                                <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <svg class="eye-closed hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="field-error-msg" id="confirmPasswordError" role="alert">Passwords do not match.</div>
+                    </div>
+                </section>
+
+                <!-- STEP 2: Profile & Personal Details -->
+                <section class="form-step" id="step2" data-step="2" aria-labelledby="step2Heading">
+                    <div class="step-meta">
+                        <span class="step-tag">Step 2 of 3</span>
+                        <h2 id="step2Heading" class="step-heading">Personal & Professional Profile</h2>
+                        <p class="step-subheading">Help us tailor your workspace experience.</p>
+                    </div>
+
+                    <!-- Phone Number with Country Code -->
+                    <div class="input-field-group">
+                        <label for="phone" class="field-label">Phone Number <span class="required-star">*</span></label>
+                        <div class="phone-input-split">
+                            <select id="countryCode" name="countryCode" class="form-control select-country-code" aria-label="Select Country Code">
+                                <option value="+1">🇺🇸 +1 (US)</option>
+                                <option value="+91" selected>🇮🇳 +91 (IN)</option>
+                                <option value="+44">🇬🇧 +44 (UK)</option>
+                                <option value="+61">🇦🇺 +61 (AU)</option>
+                                <option value="+49">🇩🇪 +49 (DE)</option>
+                                <option value="+81">🇯🇵 +81 (JP)</option>
+                                <option value="+33">🇫🇷 +33 (FR)</option>
+                            </select>
+                            <div class="input-wrapper phone-wrapper">
+                                <span class="input-prefix-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                    </svg>
+                                </span>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    class="form-control" 
+                                    placeholder="98765 43210" 
+                                    autocomplete="tel-national" 
+                                    required 
+                                    pattern="[0-9]{7,15}"
+                                    aria-describedby="phoneError">
+                            </div>
+                        </div>
+                        <div class="field-error-msg" id="phoneError" role="alert">Please enter a valid phone number (digits only, 7-15 digits).</div>
+                    </div>
+
+                    <!-- Date of Birth & Auto Age -->
+                    <div class="form-row-grid">
+                        <div class="input-field-group">
+                            <label for="dob" class="field-label">Date of Birth <span class="required-star">*</span></label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="date" 
+                                    id="dob" 
+                                    name="dob" 
+                                    class="form-control" 
+                                    required
+                                    aria-describedby="dobError">
+                            </div>
+                            <div class="field-error-msg" id="dobError" role="alert">You must be at least 18 years old.</div>
+                        </div>
+
+                        <div class="input-field-group">
+                            <label for="calculatedAge" class="field-label">Calculated Age</label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="calculatedAge" 
+                                    class="form-control readonly-input" 
+                                    placeholder="Auto-calculated" 
+                                    readonly 
+                                    tabindex="-1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gender Radio Pills -->
+                    <div class="input-field-group">
+                        <label class="field-label">Gender <span class="required-star">*</span></label>
+                        <div class="pill-radio-group" role="radiogroup" aria-label="Select Gender">
+                            <label class="pill-radio-card">
+                                <input type="radio" name="gender" value="male" required>
+                                <div class="pill-radio-content">
+                                    <span class="pill-icon">👨</span>
+                                    <span class="pill-text">Male</span>
+                                </div>
+                            </label>
+                            <label class="pill-radio-card">
+                                <input type="radio" name="gender" value="female">
+                                <div class="pill-radio-content">
+                                    <span class="pill-icon">👩</span>
+                                    <span class="pill-text">Female</span>
+                                </div>
+                            </label>
+                            <label class="pill-radio-card">
+                                <input type="radio" name="gender" value="non-binary">
+                                <div class="pill-radio-content">
+                                    <span class="pill-icon">✨</span>
+                                    <span class="pill-text">Non-Binary</span>
+                                </div>
+                            </label>
+                            <label class="pill-radio-card">
+                                <input type="radio" name="gender" value="prefer-not">
+                                <div class="pill-radio-content">
+                                    <span class="pill-icon">🔒</span>
+                                    <span class="pill-text">Private</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="field-error-msg" id="genderError" role="alert">Please select an option.</div>
+                    </div>
+
+                    <!-- Primary Role & Experience Slider -->
+                    <div class="form-row-grid">
+                        <div class="input-field-group">
+                            <label for="primaryRole" class="field-label">Primary Role / Domain <span class="required-star">*</span></label>
+                            <select id="primaryRole" name="primaryRole" class="form-control" required>
+                                <option value="" disabled selected>Select your domain</option>
+                                <option value="frontend">Frontend Engineer</option>
+                                <option value="backend">Backend Developer</option>
+                                <option value="fullstack">Full-Stack Engineer</option>
+                                <option value="uiux">UI/UX Designer</option>
+                                <option value="data-ai">Data Scientist / AI Engineer</option>
+                                <option value="devops">DevOps / Cloud Specialist</option>
+                                <option value="student">Student / Researcher</option>
+                            </select>
+                            <div class="field-error-msg" id="roleError" role="alert">Please select your primary domain.</div>
+                        </div>
+
+                        <div class="input-field-group">
+                            <div class="slider-label-row">
+                                <label for="experienceYears" class="field-label">Experience</label>
+                                <span class="slider-value-badge"><span id="expValDisplay">3</span> Years</span>
+                            </div>
+                            <input 
+                                type="range" 
+                                id="experienceYears" 
+                                name="experienceYears" 
+                                min="0" 
+                                max="15" 
+                                value="3" 
+                                class="form-range-slider" 
+                                aria-label="Years of Experience">
+                            <div class="range-marks" aria-hidden="true">
+                                <span>Entry (0)</span>
+                                <span>Mid (7)</span>
+                                <span>Senior (15+)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Drag & Drop File Zone -->
+                    <div class="input-field-group">
+                        <label class="field-label">Profile Avatar / Resume (Optional)</label>
+                        <div class="file-dropzone" id="fileDropzone" role="region" aria-label="File upload dropzone">
+                            <input 
+                                type="file" 
+                                id="userFile" 
+                                name="userFile" 
+                                class="file-hidden-input" 
+                                accept="image/png,image/jpeg,image/webp,application/pdf"
+                                aria-describedby="fileHelp">
+                            
+                            <!-- Default Empty View -->
+                            <div class="dropzone-empty" id="dropzoneEmpty">
+                                <div class="dropzone-icon">
+                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                </div>
+                                <div class="dropzone-text">
+                                    <p class="dropzone-title"><strong>Click to upload</strong> or drag and drop</p>
+                                    <p class="dropzone-subtitle" id="fileHelp">PNG, JPG, WEBP, or PDF (Max. 5 MB)</p>
+                                </div>
+                            </div>
+
+                            <!-- Preview Active View -->
+                            <div class="dropzone-preview hidden" id="dropzonePreview">
+                                <div class="preview-thumb" id="previewThumb"></div>
+                                <div class="preview-info">
+                                    <span class="preview-name" id="previewFileName">filename.png</span>
+                                    <span class="preview-size" id="previewFileSize">1.2 MB</span>
+                                </div>
+                                <button type="button" class="preview-remove-btn" id="removeFileBtn" aria-label="Remove uploaded file">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 3: Verification & Review -->
+                <section class="form-step" id="step3" data-step="3" aria-labelledby="step3Heading">
+                    <div class="step-meta">
+                        <span class="step-tag">Step 3 of 3</span>
+                        <h2 id="step3Heading" class="step-heading">Security & Final Verification</h2>
+                        <p class="step-subheading">Verify your email address and review your information.</p>
+                    </div>
+
+                    <!-- Skills / Technologies Chips -->
+                    <div class="input-field-group">
+                        <label class="field-label">Specializations / Skills (Select all that apply)</label>
+                        <div class="skills-chip-grid" role="group" aria-label="Select skills">
+                            <label class="skill-chip">
+                                <input type="checkbox" name="skills" value="JavaScript">
+                                <span class="chip-label">JavaScript</span>
+                            </label>
+                            <label class="skill-chip">
+                                <input type="checkbox" name="skills" value="TypeScript">
+                                <span class="chip-label">TypeScript</span>
+                            </label>
+                            <label class="skill-chip">
+                                <input type="checkbox" name="skills" value="React">
+                                <span class="chip-label">React</span>
+                            </label>
+                            <label class="skill-chip">
+                                <input type="checkbox" name="skills" value="Node.js">
+                                <span class="chip-label">Node.js</span>
+                            </label>
+                            <label class="skill-chip">
+                                <input type="checkbox" name="skills" value="Python">
+                                <span class="chip-label">Python</span>
+                            </label>
+                            <label class="skill-chip">
+                                <input type="checkbox" name="skills" value="Cloud / AWS / GCP">
+                                <span class="chip-label">Cloud (AWS/GCP)</span>
+                            </label>
+                            <label class="skill-chip">
+                                <input type="checkbox" name="skills" value="UI / UX">
+                                <span class="chip-label">UI / UX</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- OTP Code Simulator -->
+                    <div class="otp-verification-box">
+                        <div class="otp-box-header">
+                            <div class="otp-icon-wrap" aria-hidden="true">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                            </div>
+                            <div class="otp-text-content">
+                                <h3 class="otp-heading">Two-Factor Code Verification</h3>
+                                <p class="otp-description">
+                                    We simulated sending a 4-digit code to <strong id="otpTargetEmail">your email</strong>.
+                                    <span class="otp-demo-badge">Demo Code: <span id="demoOtpCodeDisplay" class="demo-code">8492</span></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 4 Digit Inputs -->
+                        <div class="otp-inputs-row" role="group" aria-label="4-digit verification code">
+                            <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-digit" id="otp1" autocomplete="one-time-code" aria-label="Digit 1" required>
+                            <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-digit" id="otp2" aria-label="Digit 2" required>
+                            <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-digit" id="otp3" aria-label="Digit 3" required>
+                            <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" class="otp-digit" id="otp4" aria-label="Digit 4" required>
+                        </div>
+                        <div class="field-error-msg" id="otpError" role="alert">Incorrect code. Enter the 4-digit code shown above.</div>
+
+                        <div class="otp-resend-row">
+                            <button type="button" class="text-action-btn" id="resendOtpBtn">
+                                ↻ Refresh Code
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Review Card -->
+                    <div class="account-summary-card">
+                        <div class="summary-header">
+                            <h4 class="summary-title">Summary Review</h4>
+                            <span class="summary-status">Ready to register</span>
+                        </div>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <span class="summary-label">Name</span>
+                                <span class="summary-val" id="summaryName">—</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Email</span>
+                                <span class="summary-val" id="summaryEmail">—</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Phone</span>
+                                <span class="summary-val" id="summaryPhone">—</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Domain</span>
+                                <span class="summary-val" id="summaryDomain">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions Switch -->
+                    <div class="terms-agreement-group">
+                        <label class="custom-checkbox-wrap">
+                            <input type="checkbox" id="termsConsent" name="termsConsent" required>
+                            <span class="checkbox-box" aria-hidden="true">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </span>
+                            <span class="checkbox-text">
+                                I agree to the <a href="#terms" class="legal-link" id="viewTermsLink">Terms of Service</a>, 
+                                <a href="#privacy" class="legal-link" id="viewPrivacyLink">Privacy Policy</a>, and consent to account communications. <span class="required-star">*</span>
+                            </span>
+                        </label>
+                        <div class="field-error-msg" id="termsError" role="alert">You must agree to the terms to proceed.</div>
+                    </div>
+                </section>
+
+                <!-- Navigation Controls Bar -->
+                <div class="wizard-actions">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        <span>Previous</span>
+                    </button>
+
+                    <button type="button" class="btn btn-primary" id="nextBtn">
+                        <span>Continue</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+
+                    <button type="submit" class="btn btn-primary btn-submit hidden" id="submitBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>Complete Registration</span>
+                    </button>
+                </div>
+            </form>
+
+            <footer class="wizard-card-footer">
+                <p>Already have an account? <a href="#signin" class="login-redirect-link">Sign In</a></p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- SUCCESS CELEBRATION MODAL -->
+    <div class="modal-overlay hidden" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-card">
+            <div class="modal-confetti-container" id="confettiContainer" aria-hidden="true"></div>
+            
+            <div class="success-badge-wrap">
+                <div class="success-circle-pulsing"></div>
+                <div class="success-badge-icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
             </div>
 
-            <!-- Progress Indicator -->
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
-                <div class="progress-text">Form completion: <span id="progressText">0%</span></div>
+            <h2 class="modal-title" id="modalTitle">Welcome to ApexPortal!</h2>
+            <p class="modal-desc">
+                Your account for <strong id="registeredUserEmail">user@example.com</strong> has been created and verified successfully.
+            </p>
+
+            <div class="modal-meta-box">
+                <div class="meta-row">
+                    <span class="meta-label">Account Holder:</span>
+                    <span class="meta-val" id="registeredUserName">Alex Morgan</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Domain Role:</span>
+                    <span class="meta-val" id="registeredUserRole">Full-Stack Engineer</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Status:</span>
+                    <span class="meta-badge-active">Active & Verified</span>
+                </div>
             </div>
-        </form>
 
-        <footer class="form-footer">
-            <p>Already have an account? <a href="#" class="login-link">Sign in here</a></p>
-        </footer>
-    </div>
-
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <div class="modal-icon">🎉</div>
-            <h3>Registration Successful!</h3>
-            <p>Thank you for registering. We've sent a confirmation email to your inbox.</p>
-            <button class="btn modal-btn" id="closeModal">Continue</button>
+            <button type="button" class="btn btn-primary btn-block" id="modalContinueBtn">
+                Go to Workspace Dashboard →
+            </button>
         </div>
     </div>
 
+    <!-- SCRIPT -->
     <script src="script.js"></script>
 </body>
 </html>
